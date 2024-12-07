@@ -1,4 +1,4 @@
-const API_URL = 'http:localhost:3000/api/vendors'
+const API_URL = 'http//:localhost:3000/api/vendors'
 
 export const fetchVendors = async () => {
   try {
@@ -36,3 +36,15 @@ export const deleteVendor = async (id) => {
     throw error;
   }
 }
+
+export const fetchEvents = async () => {
+  try {
+    const response = await fetch(API_URL);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json()
+} catch (error) {
+  console.error('Error fetching events:', error)
+  throw error;
+}};

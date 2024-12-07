@@ -1,15 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import VendorProfile from './VendorProfile';
-
-const fetchVendors = async () => {
-  const response = await fetch('/api/vendors');
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  const data = await response.json();
-  console.log('Fetched vendors:', data);
-  return data
-}
+import { fetchVendors } from '../apis/api'
 
 const VendorList = () => {
   const { data, error, isLoading } = useQuery({
