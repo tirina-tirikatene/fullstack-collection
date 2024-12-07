@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import VendorProfile from './VendorProfile';
 
 const fetchVendors = async () => {
   const response = await fetch('/api/vendors');
@@ -23,12 +24,13 @@ const VendorList = () => {
     <ul>
       {data && data.length > 0 ? (
         data.map(vendor => (
-        <li key={vendor.id}>
-          <h2>{vendor.name}</h2>
-          <p>Location: {vendor.location}</p>
-          <p>Description: {vendor.description}</p>
-        </li>
-      ))
+          <VendorProfile key={vendor.id} vendor={vendor} />
+      //   <li key={vendor.id}>
+      //     <h2>{vendor.name}</h2>
+      //     <p>Location: {vendor.location}</p>
+      //     <p>Description: {vendor.description}</p>
+      //   </li>
+       ))
       ) : (
         <li>No vendors found</li>
       )}

@@ -1,10 +1,11 @@
 import VendorList from './VendorList.jsx'
+import './VendorProfile.css'
 
 function App() {
   return (
     <>
       <header className="header">
-        <h1>My Collection</h1>
+        <h1>Event Marketplace</h1>
       </header>
       <section className="main">
         <VendorList />{/* add your code here */}
