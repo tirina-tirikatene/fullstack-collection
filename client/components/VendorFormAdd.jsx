@@ -10,6 +10,7 @@ const VendorFormAdd = () => {
     mutationFn: addVendor,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['vendors']})
+      setVendor({ name: '', location: '', description: ''})
     }
   })
 
@@ -20,13 +21,15 @@ const VendorFormAdd = () => {
 const handleSubmit = (e) => {
   e.preventDefault();
   mutation.mutate(vendor)
-  setVendor({ name: '', location: '', description: '' })
 }
 
 return ( <form onSubmit={handleSubmit}>
-  <input type="text" name="name" placeholder="Name" value={vendor.name} onChange={handleChange} required />
-  <input type="text" name="location" placeholder="Location" value={vendor.location} onChange={handleChange} required />
-  <input type="text" name="description" placeholder="Description" value={vendor.description} onChange={handleChange} required />
+  <label htmlFor="name">Name</label>
+  <input id="name" type="text" name="name" placeholder="Name" value={vendor.name} onChange={handleChange} required />
+  <label htmlFor="location">Location</label>
+  <input id="location" type="text" name="location" placeholder="Location" value={vendor.location} onChange={handleChange} required />
+  <label htmlFor="description">Description</label>
+  <input id="description" type="text" name="description" placeholder="Description" value={vendor.description} onChange={handleChange} required />
   <button type="submit">Add Vendor</button>
   </form>
   );

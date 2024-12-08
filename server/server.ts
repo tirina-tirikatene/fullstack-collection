@@ -21,6 +21,16 @@ server.get('/api/vendors', async (req, res) => {
    }
   })
 
+ //route to add a vendor
+ server.post('/api/vendors', async (req, res) => {
+  const { name, location, description } = req.body;
+  try {
+    const [id] = await db('vendors').insert({ name, location, description }).returning('id');
+    res.status(201).json({ id, name, location, description });
+  } catch (error) {
+    console.error(error); res.status(500).json({ message: 'Error adding vendor' });
+  } }); 
+
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
@@ -29,5 +39,10 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(Path.resolve('./dist/index.html'))
   })
 }
+
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+})
 
 export default server

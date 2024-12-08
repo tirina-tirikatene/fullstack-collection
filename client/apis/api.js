@@ -1,4 +1,4 @@
-const API_URL = 'http//:localhost:3000/api/vendors'
+const API_URL = '/api/vendors'
 
 export const fetchVendors = async () => {
   try {
@@ -39,7 +39,7 @@ export const deleteVendor = async (id) => {
 
 export const updateVendor = async (vendor) => {
   try {
-    const response = await fetch('${API_URL}/${vendor.id}', {
+    const response = await fetch(`${API_URL}/${vendor.id}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json', },
       body: JSON.stringify(vendor),
