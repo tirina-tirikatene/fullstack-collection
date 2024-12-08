@@ -37,6 +37,23 @@ export const deleteVendor = async (id) => {
   }
 }
 
+export const updateVendor = async (vendor) => {
+  try {
+    const response = await fetch('${API_URL}/${vendor.id}', {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      body: JSON.stringify(vendor),
+    })
+    if (!response.ok) {
+      throw new Error('Network response was not okay')
+    }
+    return response.json();
+  } catch (error) {
+    console.error('Error updating vendor:', error)
+    throw error;
+  }
+}
+
 export const fetchEvents = async () => {
   try {
     const response = await fetch(API_URL);
