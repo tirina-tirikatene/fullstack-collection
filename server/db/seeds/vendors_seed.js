@@ -13,6 +13,9 @@
 //};
 
 export async function seed(knex) {
+
+  await knex('vendors').del();
+  
   await knex('vendors').insert([
     {id: 1,  name: 'CHC vendor', location: 'Christchurch', description: 'Fantastic food' },
     {id: 2, name: 'WLG vendor', location: 'Wellington', description: 'Beautiful balloons' },
