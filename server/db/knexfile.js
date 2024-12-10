@@ -1,8 +1,8 @@
-import * as Path from 'node:path'
-import * as URL from 'node:url'
+import * as Path from 'node:path';
+import * as URL from 'node:url';
 
-const __filename = URL.fileURLToPath(import.meta.url)
-const __dirname = Path.dirname(__filename)
+const __filename = URL.fileURLToPath(import.meta.url);
+const __dirname = Path.dirname(__filename);
 
 export default {
   development: {
@@ -12,7 +12,7 @@ export default {
       filename: Path.join(__dirname, 'dev.sqlite3'),
     },
     migrations: {
-      directory: Path.join(__dirname, 'migrations'),
+      directory: Path.join(__dirname, 'server/db/migrations'),
     },
     pool: {
       afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
@@ -49,4 +49,4 @@ export default {
       afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
     },
   },
-}
+};
