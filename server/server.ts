@@ -9,7 +9,10 @@ import cors from 'cors';
 const db = knex(dbConfig.development);
 const server = express()
 server.use(express.json())
-server.use(cors())
+server.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}))
 
 
 // ADD YOUR API ROUTES HERE
