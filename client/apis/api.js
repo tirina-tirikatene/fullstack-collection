@@ -62,7 +62,7 @@ export const updateVendor = async (vendor) => {
 
 export const fetchEvents = async () => {
   try {
-    const response = await fetch('/api/vendors');
+    const response = await fetch('/api/events');
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }

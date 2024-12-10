@@ -64,6 +64,16 @@ server.get('/api/vendors', async (req, res) => {
     }
   });
 
+  server.get('/api/events', async (req, res) => {
+    try {
+      const events = await db('events');
+      res.status(200).json(events);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error retrieving events' });
+    }
+  });
+
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
