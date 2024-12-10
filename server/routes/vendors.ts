@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 //API route to get all vendors
-router.get('/api/vendors', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const vendors = await db('vendors');
     console.log('Vendors retrieved', vendors)
@@ -19,7 +19,7 @@ router.get('/api/vendors', async (req, res) => {
   })
 
  //route to add a vendor
- router.post('/api/vendors', async (req, res) => {
+ router.post('/', async (req, res) => {
   const { name, location, description } = req.body;
 
   if (!name || !location || !description) {
@@ -34,7 +34,7 @@ router.get('/api/vendors', async (req, res) => {
   } }); 
 
   //route to delete a vendor 
-  router.delete('/api/vendors/:id', async (req, res) => {
+  router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
       await db('vendors').where({ id }).del();
@@ -45,7 +45,7 @@ router.get('/api/vendors', async (req, res) => {
   }
 })
 
-  router.put('/api/vendors/:id', async (req, res) => {
+  router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { name, location, description } = req.body;
     try {

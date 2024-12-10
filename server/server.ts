@@ -11,8 +11,8 @@ const server = express()
 server.use(express.json())
 
 
-server.use(vendorsRouter);
-server.use(eventsRouter);
+server.use('/api/vendors', vendorsRouter);
+server.use('/api/events', eventsRouter);
 
 
 // ADD YOUR API ROUTES HERE

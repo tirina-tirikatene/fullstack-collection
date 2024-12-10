@@ -6,7 +6,7 @@ const db = knex(knexConfig.development)
 
 const router = express.Router();
 
-router.get('/api/events', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const events = await db('events');
     res.status(200).json(events);
