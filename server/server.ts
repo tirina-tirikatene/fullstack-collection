@@ -18,6 +18,7 @@ server.use(cors())
 server.get('/api/vendors', async (req, res) => {
   try {
     const vendors = await db('vendors');
+    console.log('Vendors retrieved', vendors)
     res.status(200).json(vendors);
    } catch (error) {
     console.error(error);

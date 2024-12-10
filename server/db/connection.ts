@@ -1,4 +1,4 @@
-import knexFile from './/knex'
+import knexFile from './knexfile'
 import knex from 'knex'
 
 type Environment = 'production' | 'test' | 'development'

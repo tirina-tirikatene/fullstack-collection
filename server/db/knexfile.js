@@ -12,7 +12,7 @@ export default {
       filename: Path.join(__dirname, 'dev.sqlite3'),
     },
     migrations: {
-      directory: Path.join(__dirname, 'server/db/migrations'),
+      directory: Path.join(__dirname, 'migrations'),
     },
     pool: {
       afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
