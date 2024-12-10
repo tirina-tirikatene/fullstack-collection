@@ -3,16 +3,11 @@ import * as Path from 'node:path'
 import express from 'express'
 import knex from 'knex';
 import dbConfig from './db/knexfile'; 
-import cors from 'cors';
 
 
 const db = knex(dbConfig.development);
 const server = express()
 server.use(express.json())
-server.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-}))
 
 
 // ADD YOUR API ROUTES HERE
