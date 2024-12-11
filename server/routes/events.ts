@@ -1,14 +1,12 @@
 import express from "express";
-import knex from 'knex'
-import knexConfig from '../db/knexfile'
+import connection from '../db/connection'
 
-const db = knex(knexConfig.development)
-
-const router = express.Router();
+const knex = connection;
+const router = express.Router()
 
 router.get('/', async (req, res) => {
   try {
-    const events = await db('events');
+    const events = await knex('events');
     res.status(200).json(events);
   } catch (error) {
     console.error(error);

@@ -1,15 +1,14 @@
 import express from "express";
-import knex from 'knex';
-import knexConfig from '../db/knexfile';
+import connection from '../db/connection'
 
-const db = knex(knexConfig.development);
-const router = express.Router();
+const knex = connection;
+const router = express.Router()
 
 
 //API route to get all vendors
 router.get('/', async (req, res) => {
   try {
-    const vendors = await db('vendors');
+    const vendors = await knex('vendors');
     console.log('Vendors retrieved', vendors)
     res.status(200).json(vendors);
    } catch (error) {
@@ -26,7 +25,7 @@ router.get('/', async (req, res) => {
     return res.status(400).json({ message: 'All fields required'});
   }
   try {
-    const [id] = await db('vendors').insert({ name, location, description }).returning('id');
+    const [id] = await knex('vendors').insert({ name, location, description }).returning('id');
     res.status(201).json({ id, name, location, description });
   } catch (error) {
     console.error(error); 
@@ -37,7 +36,7 @@ router.get('/', async (req, res) => {
   router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-      await db('vendors').where({ id }).del();
+      await knex('vendors').where({ id }).del();
     res.status(200).json({ message: 'Vendor deleted successfully' });
   } catch (error) {
     console.error(error);
@@ -49,7 +48,7 @@ router.get('/', async (req, res) => {
     const { id } = req.params;
     const { name, location, description } = req.body;
     try {
-      await db('vendors').where({ id }).update({ name, location, description });
+      await knex('vendors').where({ id }).update({ name, location, description });
       res.status(200).json({ message: 'Vendor updated successfully' });
     } catch (error) {
       console.error(error);
